@@ -23,13 +23,14 @@ let NUM_TRIALS = 5 //This is the number of hands to be generated and checked
 let NUM_flush = 0 //number of times a flush appears.
 let NUM_fullhouse = 0 //number of times a full house appears
 let NUM_ThreeOfAkind = 0 //number of times three of a kind appears
+let NUM_FourOfAKind = 0 //number of times four of a kind appears
 let hand = []
 
 
 // hand = drawFiveCards()
 // console.log(hand.join(' '));
 
-function full_house(){ //2 ranks are the same and the other three are aswell.
+function three_checks(){ //This code will check for fullhouse, three of a kind and four of a kind
     let array = [] 
     let count = 0
     for (let i = 0; i < hand.length; i++){
@@ -39,6 +40,7 @@ function full_house(){ //2 ranks are the same and the other three are aswell.
             array.push(hand[i][0]) //Creates new array with just numbers 
         }
     }
+    array.sort() // duplicate ranks will move next to each other
     for (let j = 0; j <array.length; j++){
         for (let k = j + 1; k < array.length; k++){
             if (array[j] == array[k]){
@@ -47,6 +49,14 @@ function full_house(){ //2 ranks are the same and the other three are aswell.
                     console.log("this is a fullhouse")
                     NUM_fullhouse++
                     return NUM_fullhouse 
+                } else if (count == 3){
+                    console.log("this is three of a kind") //as these three checks are the similar functions I combined them to reduce seperate functions
+                    NUM_ThreeOfAkind++
+                    return NUM_ThreeOfAkind 
+                } else if (count == 6 ){
+                    console.log("this is four of a kind") 
+                    NUM_FourOfAKind++
+                    return NUM_FourOfAKind
                 }
             }
         }
@@ -74,30 +84,60 @@ function flush(){ //five cards of the same suit
     }
 }
 
-function three_of_a_kind(){ //three cards of the same rank and two other random ones
-    let array = [] 
-    let count = 0
-    for (let i = 0; i < hand.length; i++){
-        if (hand[i][1] == 0){
-            array.push("10") 
-        }else{
-            array.push(hand[i][0]) //Creates new array with just numbers 
-        }
-    }
-    for (let j = 0; j <array.length; j++){
-        for (let k = j + 1; k < array.length; k++){ //again checking each value against each other
-            if (array[j] == array[k]){ //counting the number of repeats 
-                count++
-                if (count == 3){
-                    console.log("this is three of a kind")
-                    NUM_ThreeOfAkind++
-                    return NUM_ThreeOfAkind 
-                }
-            }
-        }
-    }
-}
-//this function is similar to the full house so i just used the same code and changed the logic towards the end.
+// function three_of_a_kind(){ //three cards of the same rank and two other random ones
+//     let array = [] 
+//     let count = 0
+//     for (let i = 0; i < hand.length; i++){
+//         if (hand[i][1] == 0){
+//             array.push("10") 
+//         }else{
+//             array.push(hand[i][0]) //Creates new array with just numbers 
+//         }
+//     }
+//     for (let j = 0; j <array.length; j++){
+//         for (let k = j + 1; k < array.length; k++){ //again checking each value against each other
+//             if (array[j] == array[k]){ //counting the number of repeats 
+//                 count++
+//                 if (count == 3){
+//                     console.log("this is three of a kind")
+//                     NUM_ThreeOfAkind++
+//                     return NUM_ThreeOfAkind 
+//                 }
+//             }
+//         }
+//     }
+// }
+// //this function is similar to the full house so i just used the same code and changed the logic towards the end.
+
+
+
+
+// function four_of_a_kind(){
+//     let array = [] 
+//     let count = 0
+//     for (let i = 0; i < hand.length; i++){
+//         if (hand[i][1] == 0){
+//             array.push("10") 
+//         }else{
+//             array.push(hand[i][0]) //Creates new array with just numbers 
+//         }
+//     }
+//     array.sort()
+//     for(let j = 0; j < array.length - 1; j++){
+//         for(let k = 0; k < array.length - 1; j++){
+//             if (array[j] == array[k]){
+//                 count++
+//                 if (count == 6){
+//                     console.log("this is four of a kind")
+//                     NUM_FourOfAKind++
+//                     return NUM_FourOfAKind
+//                 }
+//             }
+//         }
+//     }
+// }
+
+// The code above was written as so but i combined these to into the function "three checks"
 
 
 
@@ -105,6 +145,5 @@ for(let i=0; i<NUM_TRIALS; i++){ // loop to check each hand againt the special c
     hand = drawFiveCards()
     console.log(hand)
     flush()
-    full_house()
-    three_of_a_kind()
+    three_checks()
 }
