@@ -61,8 +61,6 @@ function three_checks(){ //This code will check for fullhouse, three of a kind a
     }
 }
 
-
-
 function flush(){ //five cards of the same suit
     let count = 0
     for (let i = 0; i < hand.length; i++){ //finding duplicates by comparing each element against each other
@@ -135,10 +133,10 @@ for(let i=0; i<NUM_TRIALS; i++){
     straight()
 }
 
-console.log("The number of hands generated are: " + NUM_TRIALS)
-console.log("The probability of getting a flush is: " + NUM_flush/NUM_TRIALS * 100 + "%" ) 
-console.log("The probability of getting a fullhouse is: " + NUM_fullhouse/NUM_TRIALS * 100 + "%")
-console.log("The probability of getting a three of a kind is: " + NUM_ThreeOfAkind/NUM_TRIALS * 100 + "%")
-console.log("The probability of getting a four of a kind is: " + NUM_FourOfAKind/NUM_TRIALS * 100 + "%")
-console.log("The probability of getting a straight is: " + NUM_straight/NUM_TRIALS * 100 + "%")
-console.log("The probabitily of getting a straight flush is: " + NUM_straight_flush/NUM_TRIALS * 100 + "%")
+console.log(`The number of hands generated are: ${NUM_TRIALS}`);
+console.log(`The probability of getting a flush is: ${NUM_flush/NUM_TRIALS * 100}%`);
+console.log(`The probability of getting a fullhouse is: ${NUM_fullhouse/NUM_TRIALS * 100}%`);
+console.log(`The probability of getting a three of a kind is: ${NUM_ThreeOfAkind/NUM_TRIALS * 100}%`);
+console.log(`The probability of getting a four of a kind is: ${NUM_FourOfAKind/NUM_TRIALS * 100}%`);
+console.log(`The probability of getting a straight is: ${NUM_straight/NUM_TRIALS * 100}%`);
+console.log(`The probabitily of getting a straight flush is: ${NUM_straight_flush/NUM_TRIALS * 100}%`);
