@@ -19,7 +19,7 @@ for(let i=0; i<5; i++){
     return hand
 }
 
-let NUM_TRIALS = 100 //This is the number of hands to be generated and checked
+let NUM_TRIALS = 1000 //This is the number of hands to be generated and checked
 let NUM_flush = 0 //number of times a flush appears.
 let NUM_fullhouse = 0 
 let NUM_ThreeOfAkind = 0 
@@ -47,15 +47,12 @@ function three_checks(){ //This code will check for fullhouse, three of a kind a
             if (array[j] == array[k]){
                 count++
                 if (count == 4){
-                    console.log("this is a fullhouse")
                     NUM_fullhouse++
                     return NUM_fullhouse 
                 } else if (count == 3){
-                    console.log("this is three of a kind") 
                     NUM_ThreeOfAkind++
                     return NUM_ThreeOfAkind 
                 } else if (count == 6 ){
-                    console.log("this is four of a kind") 
                     NUM_FourOfAKind++
                     return NUM_FourOfAKind
                 }
@@ -73,7 +70,6 @@ function flush(){ //five cards of the same suit
             if (hand[i][1] === hand[j][1]) { //If the first hand has the same suit then counter increases
                 count++
                 if (count >= 4){
-                    console.log("This is a flush") //if count is 4 (all suits are the same)
                     NUM_flush++
                     return NUM_flush 
                 }
@@ -115,14 +111,12 @@ function straight(){ //checks for straight and straigh flush
             if ((array_int[j] - array_int[k] == 1) && (hand[j][1] == hand[k][1])){ 
                 count++
                 if (count >= 4){
-                    console.log("This is a straight flush")
                     NUM_straight_flush++
                     return NUM_straight_flush //if so the straight flush variable will be updated so it is seperate to flush and straigh variable 
                 }
                 }else if(array_int[j] - array_int[k] == 1){
                     straight_count++ 
                     if (straight_count == 4){
-                        console.log("this is a straight")
                         NUM_straight++
                         return NUM_straight
                 }
@@ -134,10 +128,17 @@ function straight(){ //checks for straight and straigh flush
 }
 
 
-for(let i=0; i<NUM_TRIALS; i++){ // loop to check each hand againt the special card functions
+for(let i=0; i<NUM_TRIALS; i++){ 
     hand = drawFiveCards()
-    console.log(hand)
     flush()
     three_checks()
     straight()
 }
+
+console.log("The number of hands generated are: " + NUM_TRIALS)
+console.log("The probability of getting a flush is: " + NUM_flush/NUM_TRIALS * 100 + "%" ) 
+console.log("The probability of getting a fullhouse is: " + NUM_fullhouse/NUM_TRIALS * 100 + "%")
+console.log("The probability of getting a three of a kind is: " + NUM_ThreeOfAkind/NUM_TRIALS * 100 + "%")
+console.log("The probability of getting a four of a kind is: " + NUM_FourOfAKind/NUM_TRIALS * 100 + "%")
+console.log("The probability of getting a straight is: " + NUM_straight/NUM_TRIALS * 100 + "%")
+console.log("The probabitily of getting a straight flush is: " + NUM_straight_flush/NUM_TRIALS * 100 + "%")
