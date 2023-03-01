@@ -19,7 +19,7 @@ for(let i=0; i<5; i++){
     return hand
 }
 
-let NUM_TRIALS = 1000 //This is the number of hands to be generated and checked
+let NUM_TRIALS = 100000 //This is the number of hands to be generated and checked
 let NUM_flush = 0 //number of times a flush appears.
 let NUM_fullhouse = 0 
 let NUM_ThreeOfAkind = 0 
@@ -27,9 +27,6 @@ let NUM_FourOfAKind = 0
 let NUM_straight = 0 
 let NUM_straight_flush = 0 
 let hand = []
-
-
-
 
 function three_checks(){ //This code will check for fullhouse, three of a kind and four of a kind all at once
     let array = [] 
@@ -41,23 +38,22 @@ function three_checks(){ //This code will check for fullhouse, three of a kind a
             array.push(hand[i][0]) //Creates new array with just numbers 
         }
     }
-    array.sort() // duplicate ranks will move next to each other
     for (let j = 0; j <array.length; j++){
         for (let k = j + 1; k < array.length; k++){
-            if (array[j] == array[k]){
+                if (array[j] == array[k]){
                 count++
-                if (count == 4){
-                    NUM_fullhouse++
-                    return NUM_fullhouse 
-                } else if (count == 3){
-                    NUM_ThreeOfAkind++
-                    return NUM_ThreeOfAkind 
-                } else if (count == 6 ){
-                    NUM_FourOfAKind++
-                    return NUM_FourOfAKind
-                }
             }
         }
+    }
+    if (count == 4){
+        NUM_fullhouse++
+        return NUM_fullhouse 
+    } else if (count == 3){
+        NUM_ThreeOfAkind++
+        return NUM_ThreeOfAkind 
+    } else if (count == 6 ){
+        NUM_FourOfAKind++
+        return NUM_FourOfAKind
     }
 }
 
