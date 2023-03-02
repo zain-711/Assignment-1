@@ -104,22 +104,22 @@ function straight(){ //checks for straight and straigh flush
         for(let k = j + 1; k < array_int.length; k++){
             if ((array_int[j] - array_int[k] == 1) && (hand[j][1] == hand[k][1])){ 
                 count++
-                if (count >= 4){
-                    NUM_straight_flush++
-                    return NUM_straight_flush //if so the straight flush variable will be updated so it is seperate to flush and straigh variable 
-                }
+                break
                 }else if(array_int[j] - array_int[k] == 1){
                     straight_count++ 
-                    if (straight_count == 4){
-                        NUM_straight++
-                        return NUM_straight
+                    break
                 }
-                break
             }
         }
+    if (count >= 4){
+        NUM_straight_flush++
+        return NUM_straight_flush 
     }
-    
-}
+    if (straight_count == 4){
+        NUM_straight++
+        return NUM_straight
+    }
+    }
 
 
 for(let i=0; i<NUM_TRIALS; i++){ 
